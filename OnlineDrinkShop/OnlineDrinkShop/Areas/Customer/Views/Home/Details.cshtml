@@ -1,0 +1,123 @@
+﻿@model OnlineDrinkShop.Models.Product
+@using OnlineDrinkShop.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+    List<Cart> objs = HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("cart");
+    //Cart obj = null;
+    //if(objs != null)
+    //{
+    //    obj = objs.FirstOrDefault(c => c.ProductName == Model.ProductName);
+    //}
+}
+<h2 class="text-info">Product Details</h2>
+<form asp-action="" enctype="multipart/form-data" method="post">
+    <div class="p-4 rounded border row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+
+        <div class="col-8">
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label>品項:</label>
+                </div>
+                <div class="col-8">
+                    <input type="hidden" asp-for="Id"/>
+                    <input asp-for="ProductName" readonly="readonly" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label>大小:</label>
+                </div>
+                <div class="col-8">
+                    <select name="select_size"  class="form-select form-control" required>
+                        <option value="" selected disabled hidden>請選擇大小</option>
+                        <option value="大">大:$@Model.BigPrice</option>
+                        <option value="小">小:$@Model.SmallPrice</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label>冰度:</label>
+                </div>
+                <div class="col-8">
+                    <select name="select_iceLevel"  class="form-select form-control" required>
+                        <option value="" selected disabled hidden>請選擇冰度</option>
+                        <option value="去冰">去冰</option>
+                        <option value="微冰">微冰</option>
+                        <option value="少冰">少冰</option>
+                        <option value="正常冰">正常冰</option>
+                        <option value="常溫">常溫</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label>糖度:</label>
+                </div>
+                <div class="col-8">
+                    <select name="select_sugarLevel"  class="form-select form-control" required>
+                        <option value="" selected disabled hidden>請選擇糖度</option>
+                        <option value="無糖">無糖</option>
+                        <option value="微糖">微糖</option>
+                        <option value="半糖">半糖</option>
+                        <option value="少糖">少糖</option>
+                        <option value="正常甜">正常甜</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label>數量:</label>
+                </div>
+                <div class="col-8">
+                    <input type="number" class="form-control" min="1" name="inputCount" id="inputCount" value="1" required/>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label>備註:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" class="form-control" name="inputRemark" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+
+                </div>
+                <div class="col-8">
+                    <input type="submit" asp-controller="Home" asp-action="AddItemToCart" asp-route-id="@Model.Id" class="btn btn-info form-control" value="Add to Cart"/>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+        </div>
+
+        <div class="col-3">
+            <img src="~/@Model.Image" width="100%" style="border-radius: 5px; border: 1px solid #efefef"/>
+            @if (Model.Remark != null)
+            {
+                <label>@Model.Remark</label>
+            }
+        </div>
+        
+    </div>
+</form>
+
+@section Scripts{ 
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
