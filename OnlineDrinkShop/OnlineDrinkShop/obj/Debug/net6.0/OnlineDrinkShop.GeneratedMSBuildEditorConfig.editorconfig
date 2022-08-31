@@ -15,6 +15,30 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Admin/Views/ManageAccount/Active.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlQWNjb3VudFxBY3RpdmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Admin/Views/ManageAccount/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlQWNjb3VudFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Admin/Views/ManageAccount/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlQWNjb3VudFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Admin/Views/ManageAccount/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlQWNjb3VudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Admin/Views/ManageAccount/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlQWNjb3VudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Admin/Views/ManageAccount/Lockout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlQWNjb3VudFxMb2Nrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Admin/Views/Product/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -97,6 +121,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Customer/Views/Order/SubmitOrderSuccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcT3JkZXJcU3VibWl0T3JkZXJTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Customer/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcVXNlclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Customer/Views/User/CreateSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcVXNlclxDcmVhdGVTdWNjZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Areas/Customer/Views/_ViewImports.cshtml]
@@ -277,6 +309,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Views/Shared/_StringButtonPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdHJpbmdCdXR0b25QYXJ0aWFsVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/r6017/OneDrive/桌面/OnlineDrinkShop/OnlineDrinkShop/OnlineDrinkShop/Views/Shared/_ValidationScriptsPartial.cshtml]

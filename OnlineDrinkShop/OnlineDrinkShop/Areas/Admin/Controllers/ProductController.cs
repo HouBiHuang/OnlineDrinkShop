@@ -20,15 +20,15 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-            return View(_db.Products.Include(c => c.Tag).ToList());
+            return View(_db.Products.Include(c => c.Tag).ToList()); //回傳Products資料並轉成清單
         }
         [HttpPost]
         public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
         {
             var obj = _db.Products.Include(c => c.Tag)
-                .Where(c => c.BigPrice >= lowAmount && c.BigPrice <= largeAmount).ToList();
+                .Where(c => c.BigPrice >= lowAmount && c.BigPrice <= largeAmount).ToList(); //設定搜尋條件
 
-            if (lowAmount == null || largeAmount == null)
+            if (lowAmount == null || largeAmount == null) //如果都有填值的話，回傳指定搜尋條件內容
             {
                 obj = _db.Products.Include(c => c.Tag).ToList();
             }
@@ -37,7 +37,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name");
+            ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name"); //宣告Tag的SelectList
             return View();
         }
         [HttpPost]
@@ -56,6 +56,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
 
                 if (image != null)
                 {
+                    //照片存取
                     var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
                     using (var stream = new FileStream(name, FileMode.Create))
                     {
@@ -70,12 +71,12 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
 
                 _db.Products.Add(obj);
                 await _db.SaveChangesAsync();
-                TempData["save"] = "Product type has been saved";
+                TempData["save"] = "產品已被儲存!";
                 return RedirectToAction(nameof(Index));
             }
             else
             {
-                ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name");
+                ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name"); //宣告Tag的SelectList
 
                 return View(obj);
             }
@@ -83,14 +84,14 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
 
         public ActionResult Edit(int? id)
         {
-            ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name");
+            ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name"); //宣告Tag的SelectList
 
             if (id == null)
             {
                 return NotFound();
             }
 
-            var obj = _db.Products.Include(c => c.Tag).FirstOrDefault(c => c.Id == id);
+            var obj = _db.Products.Include(c => c.Tag).FirstOrDefault(c => c.Id == id); //利用ID搜尋指定產品
             if (obj == null)
             {
                 return NotFound();
@@ -105,6 +106,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             {
                 if (image != null)
                 {
+                    //照片儲存
                     var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
                     await image.CopyToAsync(new FileStream(name, FileMode.Create));
                     obj.Image = "Images/" + image.FileName;
@@ -116,12 +118,12 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
 
                 _db.Products.Update(obj);
                 await _db.SaveChangesAsync();
-                TempData["update"] = "Product type has been updated";
+                TempData["update"] = "產品已被更新!";
                 return RedirectToAction(nameof(Index));
             }
             else
             {
-                ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name");
+                ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name"); //宣告Tag的SelectList
 
                 return View(obj);
             }
@@ -134,7 +136,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Products.Include(c => c.Tag).FirstOrDefault(c => c.Id == id);
+            var obj = _db.Products.Include(c => c.Tag).FirstOrDefault(c => c.Id == id); //利用ID搜尋指定產品
             if (obj == null)
             {
                 return NotFound();
@@ -150,7 +152,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Products.Include(c => c.Tag).Where(c => c.Id == id).FirstOrDefault();
+            var obj = _db.Products.Include(c => c.Tag).Where(c => c.Id == id).FirstOrDefault(); //利用ID搜尋指定產品
             if (obj == null)
             {
                 return NotFound();
@@ -167,15 +169,15 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Products.FirstOrDefault(c => c.Id == id);
+            var obj = _db.Products.FirstOrDefault(c => c.Id == id); //利用ID搜尋指定產品
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _db.Products.Remove(obj);
-            await _db.SaveChangesAsync();
-            TempData["remove"] = "Product type has been removed";
+            _db.Products.Remove(obj); //刪除指定產品
+            await _db.SaveChangesAsync(); //儲存資料庫
+            TempData["remove"] = "產品已被移除!";
             return RedirectToAction(nameof(Index));
         }
     }

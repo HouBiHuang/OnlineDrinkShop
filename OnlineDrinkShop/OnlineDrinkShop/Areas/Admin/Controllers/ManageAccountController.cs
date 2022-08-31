@@ -1,0 +1,162 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using OnlineDrinkShop.Data;
+using OnlineDrinkShop.Models;
+
+namespace OnlineDrinkShop.Areas.Admin.Controllers
+{
+    [Area("Admin")]
+    public class ManageAccountController : Controller
+    {
+        UserManager<IdentityUser> _userManager;
+        ApplicationDbContext _db;
+        public ManageAccountController(UserManager<IdentityUser> userManager, ApplicationDbContext db)
+        {
+            _userManager = userManager;
+            _db = db;
+        }
+
+        public IActionResult Index()
+        {
+            return View(_db.ApplicationUsers.ToList()); //回傳使用者資料並轉成List
+        }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id); //取得指定使用者
+            if (user == null) //檢查指定使用者是否為空
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(ApplicationUser user)
+        {
+            var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id); //取得指定使用者
+            if (userInfo == null) //檢查指定使用者是否為空
+            {
+                return NotFound();
+            }
+
+            userInfo.UserName = user.UserName; //更新UserName
+            userInfo.PhoneNumber = user.PhoneNumber; //更新PhoneNumber
+
+            var result = await _userManager.UpdateAsync(userInfo); //送出更新
+            if (result.Succeeded)
+            {
+                TempData["update"] = "更新成功!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id); //取得指定使用者
+            if (user == null) //檢查指定使用者是否為空
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+        public async Task<IActionResult> Lockout(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id); //取得指定使用者
+            if (user == null) //檢查指定使用者是否為空
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Lockout(ApplicationUser user)
+        {
+            var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id); //取得指定使用者
+            if (userInfo == null) //檢查指定使用者是否為空
+            {
+                return NotFound();
+            }
+
+            userInfo.LockoutEnd = DateTime.Now.AddYears(100); //封鎖時間+100年
+            int rowAffected = _db.SaveChanges(); //送出封鎖資訊，rowAffected:變動欄位有幾個
+            if (rowAffected > 0)
+            {
+                TempData["lockout"] = "使用者已被封鎖!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(userInfo);
+        }
+
+        public async Task<IActionResult> Active(string id)
+        {
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id); //取得指定使用者
+            if (user == null) //檢查指定使用者是否為空
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Active(ApplicationUser user)
+        {
+            var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id); //取得指定使用者
+            if (userInfo == null) //檢查指定使用者是否為空
+            {
+                return NotFound();
+            }
+
+            userInfo.LockoutEnd = DateTime.Now.AddDays(-1); //設定解鎖，當今時間-1天
+            int rowAffected = _db.SaveChanges(); //送出解鎖要求，rowAffected:變動欄位有幾個
+            if (rowAffected > 0)
+            {
+                TempData["active"] = "使用者已被解鎖!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(userInfo);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        { 
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id); //取得指定使用者
+            if (user == null) //檢查指定使用者是否為空
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(ApplicationUser user)
+        {
+            var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id); //取得指定使用者
+            if (userInfo == null) //檢查指定使用者是否為空
+            {
+                return NotFound();
+            }
+
+            _db.ApplicationUsers.Remove(userInfo); //移除使用者
+            int rowAffected = _db.SaveChanges(); //資料庫儲存
+            if (rowAffected > 0)
+            {
+                TempData["remove"] = "使用者已被刪除!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(userInfo);
+        }
+    }
+}

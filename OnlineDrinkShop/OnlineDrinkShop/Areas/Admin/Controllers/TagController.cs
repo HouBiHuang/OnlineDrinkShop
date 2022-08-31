@@ -19,7 +19,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var data = _db.Tags.ToList();
-            return View(data);
+            return View(data); //回傳Tag資料
         }
 
         // GET: TagController/Create
@@ -41,9 +41,10 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                     return View(obj);
                 }
 
+                //如果沒重複Tag，就儲存
                 _db.Tags.Add(obj);
                 await _db.SaveChangesAsync();
-                TempData["save"] = "Product type has been saved";
+                TempData["save"] = "Tag已被儲存!";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -57,7 +58,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Tags.Find(id);
+            var obj = _db.Tags.Find(id); //利用ID尋找TAG
             if (obj == null)
             {
                 return NotFound();
@@ -70,9 +71,9 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Tags.Update(obj); //_db.Update(productTypes);
-                await _db.SaveChangesAsync();
-                TempData["update"] = "Product type has been updated";
+                _db.Tags.Update(obj); //更新
+                await _db.SaveChangesAsync(); //資料庫儲存
+                TempData["update"] = "Tag已被更新!";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -86,7 +87,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Tags.Find(id);
+            var obj = _db.Tags.Find(id); //利用ID尋找TAG
             if (obj == null)
             {
                 return NotFound();
@@ -101,7 +102,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Tags.Find(id);
+            var obj = _db.Tags.Find(id); //利用ID尋找TAG
             if (obj == null)
             {
                 return NotFound();
@@ -117,15 +118,15 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var obj_content = _db.Tags.Find(id);
+            var obj_content = _db.Tags.Find(id); //利用ID尋找TAG
             if (obj_content == null)
             {
                 return NotFound();
             }
 
-            _db.Tags.Remove(obj_content);
-            await _db.SaveChangesAsync();
-            TempData["remove"] = "Product type has been removed";
+            _db.Tags.Remove(obj_content); //刪除TAG
+            await _db.SaveChangesAsync(); //資料庫儲存
+            TempData["remove"] = "Tag已被刪除!";
             return RedirectToAction(nameof(Index));
         }
     }

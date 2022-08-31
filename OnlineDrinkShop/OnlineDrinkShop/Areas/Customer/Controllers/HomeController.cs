@@ -23,6 +23,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             return View();
         }
 
+        //茗品系列View
         public IActionResult Tea(int? page)
         {
             var tea = (from t in _db.Products
@@ -31,9 +32,10 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                       .Include(a => a.Tag)
                       .ToList();
 
-            return View(tea.ToPagedList(page ?? 1,16));
+            return View(tea.ToPagedList(page ?? 1,16)); //如果無指定Page，則從第1頁開始顯示，每頁16筆
         }
 
+        //奶茶系列View
         public IActionResult MilkTea(int? page)
         {
             var tea = (from t in _db.Products
@@ -42,9 +44,10 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                       .Include(a => a.Tag)
                       .ToList();
 
-            return View(tea.ToPagedList(page ?? 1, 16));
+            return View(tea.ToPagedList(page ?? 1, 16)); //如果無指定Page，則從第1頁開始顯示，每頁16筆
         }
 
+        //季節鮮果系列View
         public IActionResult SeasonalFreshFruit(int? page)
         {
             var tea = (from t in _db.Products
@@ -52,8 +55,8 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                        select t)
                       .Include(a => a.Tag)
                       .ToList();
-
-            return View(tea.ToPagedList(page ?? 1, 16));
+             
+            return View(tea.ToPagedList(page ?? 1, 16)); //如果無指定Page，則從第1頁開始顯示，每頁16筆
         }
 
         public IActionResult Details(int? id)
@@ -63,7 +66,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Products.Include(c => c.Tag).FirstOrDefault(c => c.Id == id);
+            var obj = _db.Products.Include(c => c.Tag).FirstOrDefault(c => c.Id == id); //利用id找尋指定Product
             if (obj == null)
             {
                 return NotFound();
@@ -74,7 +77,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
 
         public IActionResult CartPage()
         {
-            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart");
+            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //購物車清單
             if (objs == null)
             {
                 objs = new List<Cart>();
@@ -100,13 +103,14 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             }
 
             List<Cart> objs = new List<Cart>(); //objs:Product type list
-            Cart item = new Cart();
-            objs = HttpContext.Session.Get<List<Cart>>("cart"); //"objs":儲存容器
+            Cart item = new Cart(); //item:購物車物件
+            objs = HttpContext.Session.Get<List<Cart>>("cart"); //購物車清單
             if (objs == null)
             {
                 objs = new List<Cart>();
             }
 
+            //將產品細項儲存至購物車
             item.Id = obj.Id;
             item.ProductName = obj.ProductName;
             item.Size = select_size;
@@ -135,14 +139,14 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         [ActionName("Remove")]
         public IActionResult RemoveToCart(int? id)
         {
-            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart");
+            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //購物車清單
             if (objs != null)
             {
                 var obj = objs.FirstOrDefault(c => c.Id == id);
                 if (obj != null)
                 {
-                    objs.Remove(obj);
-                    HttpContext.Session.Set("cart", objs);
+                    objs.Remove(obj); //將產品從購物車移除
+                    HttpContext.Session.Set("cart", objs); //儲存
                 }
             }
             return RedirectToAction(nameof(CartPage));
