@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1wAK4fy8pYx21mgqhb6FxIB2Vq899aNbD84qq/ZGKm1RypWHYmyzsqmT7y6e4u8ybEjmW+DWk6qC5NJcb8KcVA==",
+  "dgSpecHash": "JBNDXPRwg6o6DIkOgtNj4UWNQ/B8OfgXkngcG134AcG2b0uhmz+DfHMTX/RpSgGxrAZy9jJaEkLWghHPDd42tQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop.csproj",
+  "projectFilePath": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\r6017\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\r6017\\.nuget\\packages\\jetbrains.annotations\\2022.1.0\\jetbrains.annotations.2022.1.0.nupkg.sha512",

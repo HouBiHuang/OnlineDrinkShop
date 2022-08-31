@@ -9,7 +9,7 @@
         public string IceLevel { get; set; }
         public string Size { get; set; }
         public int Price { get; set; }
-        public string Remark { get; set; }
+        public string? Remark { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
     }
 }
