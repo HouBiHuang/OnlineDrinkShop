@@ -24,7 +24,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout(Order obj)
         {
-            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart");
+            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //取得購物車清單
             obj.OrderNo = GetOrderNo(); //取得訂單編號
 
             if (objs != null)

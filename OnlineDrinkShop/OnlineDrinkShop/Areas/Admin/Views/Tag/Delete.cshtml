@@ -20,7 +20,7 @@
             <span asp-validation-for="Tag_Name" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-danger" id="del" value="Delete"/>
+            <input type="submit" class="btn btn-danger" id="DeleteButton" value="Delete"/>
             <a asp-controller="Tag" asp-action="Index" class="btn btn-success">Back To List</a>
         </div>
     </div>
@@ -30,8 +30,8 @@
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#del").click(function(){
-            if (!confirm("Do you want to delete?")){
+        $("#DeleteButton").click(function(){
+            if (!confirm("確認要刪除嗎?")){
                 return false;
             }
         });
