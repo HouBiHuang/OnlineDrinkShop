@@ -29,6 +29,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             if (ModelState.IsValid)
             {
                 user.EmailConfirmed = true; //取消Email認證
+                user.Email = user.UserName; //Email = UserName
                 var result = await _userManager.CreateAsync(user, user.PasswordHash);
                 if (result.Succeeded)
                 {

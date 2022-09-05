@@ -378,6 +378,9 @@ namespace OnlineDrinkShop.Data.Migrations
                     b.Property<int>("BonusPoints")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserFullName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 

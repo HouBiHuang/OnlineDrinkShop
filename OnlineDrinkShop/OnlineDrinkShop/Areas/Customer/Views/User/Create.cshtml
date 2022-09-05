@@ -16,23 +16,24 @@
 
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="UserName">使用者名稱:</label>
+                <label asp-for="UserFullName">使用者全名(非必填):</label>
             </div>
             <div class="col-5">
-                <input asp-for="UserName" class="form-control" />
+                <input asp-for="UserFullName" class="form-control"/>
             </div>
-            <span asp-validation-for="UserName" class="text-danger"></span>
+            <span asp-validation-for="UserFullName" class="text-danger"></span>
         </div>
 
         <div class="form-group row mt-2">
             <div class="col-2">
-                <label asp-for="Email">Email:</label>
+                <label asp-for="UserName">Email:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="UserName" class="form-control" type="email"/>
             </div>
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <span asp-validation-for="UserName" class="text-danger"></span>
         </div>
+
 
         <div class="form-group row mt-2">
             <div class="col-2">
@@ -80,10 +81,7 @@
     $(document).ready(function () { 
         $("#signupForm").validate({
             rules: {
-                UserName : {
-                    required: true,
-                },
-                Email: {
+                UserName: {
                     required: true,
                     email: true
                 },
@@ -98,8 +96,7 @@
                 }   
             },
             messages: {
-                UserName: "請輸入使用者名稱",
-                Email: "請輸入Email",
+                UserName: "請輸入Email",
                 PasswordHash: {
                     required: "請輸入密碼",
                     minlength: "密碼長度至少為6"

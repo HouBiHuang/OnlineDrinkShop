@@ -3,7 +3,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h2 class="text-info">Add New Product</h2>
+<h2 class="text-info">新增產品</h2>
 <form asp-action="Create" enctype="multipart/form-data" method="post">
     <div class="p-4 rounded border">
         <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
@@ -11,7 +11,7 @@
 
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="ProductName"></label>
+                <label asp-for="ProductName">品名:</label>
             </div>
             <div class="col-5">
                 <input asp-for="ProductName" class="form-control"/>
@@ -21,7 +21,7 @@
 
         <div class="form-group row mt-2">
             <div class="col-2">
-                <label asp-for="SmallPrice"></label>
+                <label asp-for="SmallPrice">小杯價格:</label>
             </div>
             <div class="col-5">
                 <input asp-for="SmallPrice" class="form-control"/>
@@ -31,7 +31,7 @@
 
         <div class="form-group row mt-2">
             <div class="col-2">
-                <label asp-for="BigPrice"></label>
+                <label asp-for="BigPrice">大杯價格:</label>
             </div>
             <div class="col-5">
                 <input asp-for="BigPrice" class="form-control"/>
@@ -41,7 +41,7 @@
 
         <div class="form-group row mt-2">
             <div class="col-2">
-                <label asp-for="Image"></label>
+                <label asp-for="Image">照片:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Image" class="form-control" type="file" />
@@ -51,7 +51,7 @@
 
         <div class="form-group row mt-2">
             <div class="col-2">
-                <label asp-for="TagId"></label>
+                <label asp-for="TagId">Tag:</label>
             </div>
             <div class="col-5">
                 <select asp-for="TagId" asp-items="(SelectList)@ViewData["tagId"]" class="form-select"></select>
@@ -61,7 +61,7 @@
 
         <div class="form-group row mt-2">
             <div class="col-2">
-                <label asp-for="Remark"></label>
+                <label asp-for="Remark">備註:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Remark" class="form-control"/>
@@ -71,7 +71,7 @@
 
         <div class="form-group row mt-2">
             <div class="col-2">
-                <label asp-for="SugarLevelIsAvailable"></label>
+                <label asp-for="SugarLevelIsAvailable">糖度是否可選?</label>
             </div>
             <div class="col-5">
                 <input asp-for="SugarLevelIsAvailable" class="" type="checkbox"/>
@@ -81,7 +81,7 @@
 
         <div class="form-group row mt-2">
             <div class="col-2">
-                <label asp-for="IceLevelIsAvailable"></label>
+                <label asp-for="IceLevelIsAvailable">冰度是否可選?</label>
             </div>
             <div class="col-5">
                 <input asp-for="IceLevelIsAvailable" class="" type="checkbox"/>
@@ -91,7 +91,7 @@
 
         <div class="form-group row mt-2">
             <div class="col-2">
-                <label asp-for="IsAvailable"></label>
+                <label asp-for="IsAvailable">是否上架?</label>
             </div>
             <div class="col-5">
                 <input asp-for="IsAvailable" class="" type="checkbox"/>
@@ -100,8 +100,8 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Save"/>
-            <a asp-controller="Product" asp-action="Index" class="btn btn-success">Back To List</a>
+            <input type="submit" class="btn btn-primary" value="儲存"/>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-success">回到清單</a>
         </div>
     </div>
 </form>

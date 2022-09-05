@@ -40,7 +40,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            userInfo.UserName = user.UserName; //更新UserName
+            userInfo.UserFullName = user.UserFullName; //更新UserFullName
             userInfo.PhoneNumber = user.PhoneNumber; //更新PhoneNumber
 
             var result = await _userManager.UpdateAsync(userInfo); //送出更新

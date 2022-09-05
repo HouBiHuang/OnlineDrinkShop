@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using OnlineDrinkShop.Data;
+using OnlineDrinkShop.Models;
 
 namespace OnlineDrinkShop.Areas.Identity.Pages.Account
 {
@@ -21,11 +23,12 @@ namespace OnlineDrinkShop.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        private ApplicationDbContext _db;
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger, ApplicationDbContext db)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _db = db;   
         }
 
         /// <summary>
@@ -114,6 +117,21 @@ namespace OnlineDrinkShop.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Email.ToLower() == Input.Email.ToLower()); //利用email取得使用者資訊
+                    var roleInfo = (from ur in _db.UserRoles //從UserRoles資料
+                                    join r in _db.Roles on ur.RoleId equals r.Id //加入Roles，條件:UserRoles.RoleId == Roles.Id
+                                    where ur.UserId == userInfo.Id //UserRoles.UserId == 登入帳號的Id
+                                    select new UserSessionVm
+                                    {
+                                        UserName = Input.Email,
+                                        RoleName = r.Name
+                                    }).FirstOrDefault();
+                    
+                    if (roleInfo != null)
+                    {
+                        HttpContext.Session.SetString("roleName", roleInfo.RoleName); //設定roleName
+                    }
+
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
