@@ -25,6 +25,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         public async Task<IActionResult> Checkout(Order obj)
         {
             List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //取得購物車清單
+
             obj.OrderNo = GetOrderNo(); //取得訂單編號
 
             if (objs != null)
@@ -39,11 +40,12 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                     orderDetail.Remark = item.Remark;
                     orderDetail.Price = item.Price;
                     orderDetail.Size = item.Size;
-                    _db.OrderDetails.Add(orderDetail);
+                    obj.OrderDetail.Add(orderDetail);
                 }
             }
 
             _db.Orders.Add(obj); //新增訂單資訊
+
             await _db.SaveChangesAsync(); //儲存
             HttpContext.Session.Set("cart", new List<Cart>()); //將購物車設為空
 

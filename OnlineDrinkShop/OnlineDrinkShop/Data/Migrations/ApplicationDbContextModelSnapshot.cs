@@ -287,6 +287,9 @@ namespace OnlineDrinkShop.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<string>("OrderNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -310,6 +313,8 @@ namespace OnlineDrinkShop.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -438,6 +443,17 @@ namespace OnlineDrinkShop.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("OnlineDrinkShop.Models.OrderDetail", b =>
+                {
+                    b.HasOne("OnlineDrinkShop.Models.Order", "Order")
+                        .WithMany("OrderDetail")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("OnlineDrinkShop.Models.Product", b =>
                 {
                     b.HasOne("OnlineDrinkShop.Models.Tag", "Tag")
@@ -447,6 +463,11 @@ namespace OnlineDrinkShop.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("OnlineDrinkShop.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetail");
                 });
 #pragma warning restore 612, 618
         }

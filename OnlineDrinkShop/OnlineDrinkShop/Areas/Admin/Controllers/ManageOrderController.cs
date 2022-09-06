@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnlineDrinkShop.Data;
 using OnlineDrinkShop.Models;
 
@@ -55,17 +56,14 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Orders.FirstOrDefault(c => c.Id == id); //利用ID搜尋指定訂單
+            var obj = _db.Orders.Include(c => c.OrderDetail).FirstOrDefault(c => c.Id == id); //利用ID搜尋指定訂單
 
             if (obj == null)
             {
                 return NotFound();
             }
 
-            var Detail = from d in _db.OrderDetails
-                         where d.OrderNo == obj.OrderNo
-                         select d; //利用OrderNo找到訂單細節
-            ViewBag.OrderDetail = Detail;
+            //obj.OrderDetail = _db.OrderDetails.Where(c => c.OrderId == obj.Id).ToList(); //利用OrderId找到訂單細節
 
             return View(obj);
         }
@@ -99,13 +97,12 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            //var data = _db.OrderDetails.AsQueryable();
-            //data = data.Where(c => c.OrderNo == obj.OrderNo);
-            var details = _db.OrderDetails.Where(c => c.OrderNo == obj.OrderNo);
-            foreach (var data in details)
-            {
-                _db.OrderDetails.Remove(data);
-            }
+            
+            //var details = _db.OrderDetails.Where(c => c.OrderNo == obj.OrderNo);
+            //foreach (var data in details)
+            //{
+            //    _db.OrderDetails.Remove(data);
+            //}
 
             _db.Orders.Remove(obj); //刪除指定訂單
             await _db.SaveChangesAsync(); //儲存資料庫

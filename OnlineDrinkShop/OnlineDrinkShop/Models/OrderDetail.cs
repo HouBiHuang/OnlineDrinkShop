@@ -1,8 +1,15 @@
-﻿namespace OnlineDrinkShop.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace OnlineDrinkShop.Models
 {
     public class OrderDetail
     {
         public int Id { get; set; }
+
+        public int OrderId { get; set; }
+        [ForeignKey("OrderId")]
+        public Order Order { get; set; }
+
         public string OrderNo { get; set; }
         public string ProductName { get; set; }
         public string SugarLevel { get; set; }
