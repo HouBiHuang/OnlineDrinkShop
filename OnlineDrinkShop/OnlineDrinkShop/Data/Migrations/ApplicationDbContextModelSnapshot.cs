@@ -249,6 +249,9 @@ namespace OnlineDrinkShop.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("OrderIsComplete")
+                        .HasColumnType("bit");
+
                     b.Property<string>("OrderNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

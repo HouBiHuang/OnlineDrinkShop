@@ -42,7 +42,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (userRole == "Admin")
+                        @if (true) @*userRole == "Admin"*@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-danger" asp-area="Admin" asp-controller="Tag" asp-action="Index">新增Tag</a>
@@ -55,6 +55,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-danger" asp-area="Admin" asp-controller="Role" asp-action="Index">Role管理</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-danger" asp-area="Admin" asp-controller="ManageOrder" asp-action="Index">訂單總覽</a>
                             </li>
                         }
                         <li class="nav-item">

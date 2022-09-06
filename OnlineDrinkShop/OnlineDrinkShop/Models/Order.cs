@@ -24,5 +24,6 @@ namespace OnlineDrinkShop.Models
         public int Total { get; set; }
 
         public DateTime OrderDate { get; set; } = DateTime.Now;
+        public bool OrderIsComplete { get; set; } = false;
     }
 }
