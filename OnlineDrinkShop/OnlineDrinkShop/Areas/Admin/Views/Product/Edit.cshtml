@@ -3,9 +3,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2 class="text-info">編輯產品</h2>
+<h2 class="text-secondary">編輯產品</h2>
 <form asp-action="Edit" enctype="multipart/form-data" method="post">
-    <div class="p-4 rounded border row">
+    <div class="p-4 rounded border border-dark row">
         <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
 
         <div class="col-8">
@@ -111,7 +111,9 @@
         </div>
 
         <div class="col-3">
-            <img src="~/@Model.Image" width="100%" style="border-radius: 5px; border: 1px solid #efefef"/>
+            <div class="border border-dark">
+                <img src="~/@Model.Image" width="100%" style="border-radius: 5px; border: 1px solid #efefef"/>
+            </div>
         </div>
         
     </div>
