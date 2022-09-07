@@ -15,7 +15,7 @@
 }
 <h2 class="text-info">確認訂單</h2>
 <form asp-action="Checkout" enctype="multipart/form-data" method="post">
-    <div class="p-4 rounded border row">
+    <div class="p-4 rounded border border-dark row">
         <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
         <input type="hidden" asp-for="Total" value="@objs.Sum(c => c.Price)" />
 
