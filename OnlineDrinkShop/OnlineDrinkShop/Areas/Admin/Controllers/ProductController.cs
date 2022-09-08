@@ -124,6 +124,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             }
             else
             {
+                obj.Image = _db.Products.Include(c => c.Tag).FirstOrDefault(c => c.Id == obj.Id).Image;
                 ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name"); //宣告Tag的SelectList
 
                 return View(obj);
