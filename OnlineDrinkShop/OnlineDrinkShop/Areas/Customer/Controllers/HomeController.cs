@@ -27,7 +27,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         public IActionResult Tea(int? page)
         {
             var tea = (from t in _db.Products
-                       where t.Tag.Tag_Name == "茗品系列"
+                       where t.Tag.Tag_Name == "茗品系列" && t.IsAvailable == true
                        select t)
                       .Include(a => a.Tag)
                       .ToList();
@@ -39,7 +39,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         public IActionResult MilkTea(int? page)
         {
             var tea = (from t in _db.Products
-                       where t.Tag.Tag_Name == "奶茶系列"
+                       where t.Tag.Tag_Name == "奶茶系列" && t.IsAvailable == true
                        select t)
                       .Include(a => a.Tag)
                       .ToList();
@@ -51,7 +51,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         public IActionResult SeasonalFreshFruit(int? page)
         {
             var tea = (from t in _db.Products
-                       where t.Tag.Tag_Name == "季節鮮果系列"
+                       where t.Tag.Tag_Name == "季節鮮果系列" && t.IsAvailable == true
                        select t)
                       .Include(a => a.Tag)
                       .ToList();

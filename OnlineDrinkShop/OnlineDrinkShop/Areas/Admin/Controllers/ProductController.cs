@@ -57,8 +57,8 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 if (image != null)
                 {
                     //照片存取
-                    var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
-                    using (var stream = new FileStream(name, FileMode.Create))
+                    var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName)); //設定路徑
+                    using (var stream = new FileStream(name, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
                     {
                         await image.CopyToAsync(stream);
                     }
@@ -100,20 +100,21 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Product obj, IFormFile image)
+        public async Task<IActionResult> Edit(Product obj, IFormFile? image)
         {
             if (ModelState.IsValid)
             {
-                if (image != null)
+                if (image == null)
                 {
-                    //照片儲存
-                    var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
-                    await image.CopyToAsync(new FileStream(name, FileMode.Create));
-                    obj.Image = "Images/" + image.FileName;
+                    obj.Image = _db.Products.Include(c => c.Tag).FirstOrDefault(c => c.Id == obj.Id).Image;
+                    _db.ChangeTracker.Clear(); //取消追蹤_db.Products.Include(c => c.Tag).FirstOrDefault(c => c.Id == obj.Id)
                 }
                 else
                 {
-                    obj.Image = "Images/noimage.PNG";
+                    //照片儲存
+                    var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName)); //設定路徑
+                    await image.CopyToAsync(new FileStream(name, FileMode.Create, FileAccess.Write, FileShare.ReadWrite));
+                    obj.Image = "Images/" + image.FileName;
                 }
 
                 _db.Products.Update(obj);

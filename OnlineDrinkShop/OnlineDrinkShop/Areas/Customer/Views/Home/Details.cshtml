@@ -47,14 +47,21 @@
                     <label>冰度:</label>
                 </div>
                 <div class="col-8">
-                    <select name="select_iceLevel"  class="form-select form-control" required>
-                        <option value="" selected disabled hidden>請選擇冰度</option>
-                        <option value="去冰">去冰</option>
-                        <option value="微冰">微冰</option>
-                        <option value="少冰">少冰</option>
-                        <option value="正常冰">正常冰</option>
-                        <option value="常溫">常溫</option>
-                    </select>
+                    @if(Model.IceLevelIsAvailable)
+                    {
+                        <select name="select_iceLevel"  class="form-select form-control" required>
+                            <option value="" selected disabled hidden>請選擇冰度</option>
+                            <option value="去冰">去冰</option>
+                            <option value="微冰">微冰</option>
+                            <option value="少冰">少冰</option>
+                            <option value="正常冰">正常冰</option>
+                            <option value="常溫">常溫</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" placeholder="冰度不可調" readonly/>
+                    }
                 </div>
             </div>
 
@@ -63,14 +70,21 @@
                     <label>糖度:</label>
                 </div>
                 <div class="col-8">
-                    <select name="select_sugarLevel"  class="form-select form-control" required>
-                        <option value="" selected disabled hidden>請選擇糖度</option>
-                        <option value="無糖">無糖</option>
-                        <option value="微糖">微糖</option>
-                        <option value="半糖">半糖</option>
-                        <option value="少糖">少糖</option>
-                        <option value="正常甜">正常甜</option>
-                    </select>
+                    @if (Model.SugarLevelIsAvailable)
+                    {
+                        <select name="select_sugarLevel"  class="form-select form-control" required>
+                            <option value="" selected disabled hidden>請選擇糖度</option>
+                            <option value="無糖">無糖</option>
+                            <option value="微糖">微糖</option>
+                            <option value="半糖">半糖</option>
+                            <option value="少糖">少糖</option>
+                            <option value="正常甜">正常甜</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" placeholder="甜度不可調" readonly/>
+                    }
                 </div>
             </div>
 
