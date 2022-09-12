@@ -13,12 +13,12 @@
     //    obj = objs.FirstOrDefault(c => c.ProductName == Model.ProductName);
     //}
 }
-<h2 class="text-info">選購產品</h2>
+<h2 class="text-secondary">選購產品</h2>
 <form asp-action="" enctype="multipart/form-data" method="post">
     <div class="p-4 rounded border border-dark row">
         <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
 
-        <div class="col-8">
+        <div class="col-md-12 col-lg-8">
             <div class="form-group row mb-2">
                 <div class="col-4">
                     <label>品項:</label>
@@ -121,11 +121,11 @@
 
         </div>
 
-        <div class="col-1">
-
+        <div class="col-md-12 col-lg-1">
+            <br />
         </div>
 
-        <div class="col-3">
+        <div class="col-md-12 col-lg-3">
             <div class="border border-dark" style="background-color:navajowhite">
                 <img src="~/@Model.Image" width="100%" style="border-radius: 5px; border: 1px solid #efefef"/>
             </div>

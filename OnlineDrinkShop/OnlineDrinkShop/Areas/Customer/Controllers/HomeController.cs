@@ -72,6 +72,22 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                 return NotFound();
             }
 
+            //設定當前頁面屬於哪個系列
+            switch (obj.Tag.Tag_Name) //選取當前飲料歸類
+            {
+                case "茗品系列":
+                    ViewBag.Current = "Tea";
+                    break;
+                case "奶茶系列":
+                    ViewBag.Current = "MilkTea";
+                    break;
+                case "季節鮮果系列":
+                    ViewBag.Current = "SeasonalFreshFruit";
+                    break;
+                default:
+                    break;
+            }
+
             return View(obj);
         }
 
