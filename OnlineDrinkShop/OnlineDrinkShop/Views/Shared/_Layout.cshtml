@@ -33,7 +33,7 @@
 </head>
 <body style="background-color: #E8E7D2">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color:navajowhite">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom border-dark box-shadow mb-3" style="background-color:navajowhite">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Tea">OnlineDrinkShop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -45,7 +45,7 @@
                         @if (true) @*userRole == "Admin"*@
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-danger asp-area="Admin" asp-controller="Tag" asp-action="Index">新增Tag</a>
+                                <a class="nav-link text-danger" asp-area="Admin" asp-controller="Tag" asp-action="Index">新增Tag</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-danger" asp-area="Admin" asp-controller="Product" asp-action="Index">新增產品</a>
@@ -93,7 +93,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top border-dark footer text-muted">
         <div class="container">
             圖資來源:清心福全
         </div>
