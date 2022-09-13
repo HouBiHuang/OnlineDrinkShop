@@ -3,16 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineDrinkShop.Areas.Admin.Models;
 using OnlineDrinkShop.Data;
+using OnlineDrinkShop.Models;
 
 namespace OnlineDrinkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class RoleController : Controller
     {
-        RoleManager<IdentityRole> _roleManager;
-        UserManager<IdentityUser> _userManager;
-        ApplicationDbContext _db;
-        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager, ApplicationDbContext db)
+        private RoleManager<IdentityRole> _roleManager;
+        private UserManager<ApplicationUser> _userManager;
+        private ApplicationDbContext _db;
+        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, ApplicationDbContext db)
         {
             _roleManager = roleManager;
             _userManager = userManager;

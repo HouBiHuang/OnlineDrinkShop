@@ -1,6 +1,7 @@
 ﻿@using OnlineDrinkShop.Utility
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
+
 @{
     var userRole = HttpContextAccessor.HttpContext.Session.GetString("roleName");
     int count = 0;
@@ -42,7 +43,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (true) @*userRole == "Admin"*@
+                        @if (userRole == "Admin") @**@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-danger" asp-area="Admin" asp-controller="Tag" asp-action="Index">新增Tag</a>

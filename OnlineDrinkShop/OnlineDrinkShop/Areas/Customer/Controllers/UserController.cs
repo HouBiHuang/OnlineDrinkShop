@@ -9,9 +9,9 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
     [Area("Customer")]
     public class UserController : Controller
     {
-        UserManager<IdentityUser> _userManager;
-        ApplicationDbContext _db;
-        public UserController(UserManager<IdentityUser> userManager, ApplicationDbContext db)
+        private UserManager<ApplicationUser> _userManager;
+        private ApplicationDbContext _db;
+        public UserController(UserManager<ApplicationUser> userManager, ApplicationDbContext db)
         {
             _userManager = userManager;
             _db = db;

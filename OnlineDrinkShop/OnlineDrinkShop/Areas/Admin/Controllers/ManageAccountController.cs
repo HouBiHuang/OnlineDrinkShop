@@ -8,9 +8,9 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
     [Area("Admin")]
     public class ManageAccountController : Controller
     {
-        UserManager<IdentityUser> _userManager;
-        ApplicationDbContext _db;
-        public ManageAccountController(UserManager<IdentityUser> userManager, ApplicationDbContext db)
+        private UserManager<ApplicationUser> _userManager;
+        private ApplicationDbContext _db;
+        public ManageAccountController(UserManager<ApplicationUser> userManager, ApplicationDbContext db)
         {
             _userManager = userManager;
             _db = db;

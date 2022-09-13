@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineDrinkShop.Data;
 using OnlineDrinkShop.Models;
@@ -10,14 +11,25 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
     public class OrderController : Controller
     {
         private ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public OrderController(ApplicationDbContext db)
+        public OrderController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
+            _userManager = userManager;
         }
 
-        public IActionResult Checkout()
+        public async Task<IActionResult> Checkout()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user != null)
+            {
+                ViewBag.BonusPoints = user.BonusPoints;
+            }
+            else
+            {
+                ViewBag.BonusPoints = 0;
+            }
             return View();
         }
         [HttpPost]

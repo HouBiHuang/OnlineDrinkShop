@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineDrinkShop.Data;
 using OnlineDrinkShop.Models;
@@ -6,6 +7,7 @@ using OnlineDrinkShop.Models;
 namespace OnlineDrinkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    //[Authorize(Roles = "Admin")]
     public class TagController : Controller
     {
         private ApplicationDbContext _db;
