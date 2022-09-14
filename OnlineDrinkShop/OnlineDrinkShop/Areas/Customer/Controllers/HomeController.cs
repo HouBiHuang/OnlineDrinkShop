@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineDrinkShop.Data;
@@ -13,9 +14,11 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext _db;
-        public HomeController(ApplicationDbContext db)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public HomeController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
+            _userManager = userManager; 
         }
 
         public IActionResult Index()
@@ -91,14 +94,74 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             return View(obj);
         }
 
-        public IActionResult CartPage()
+        public async Task<IActionResult> CartPage()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user != null)
+            {
+                ViewBag.BonusPoints = user.BonusPoints;
+            }
+            else
+            {
+                ViewBag.BonusPoints = 0;
+            }
+
             List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //購物車清單
             if (objs == null)
             {
                 objs = new List<Cart>();
             }
             return View(objs);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CartPage(int InputBonusPoints)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //取得購物車清單
+            if (objs == null)
+            {
+                objs = new List<Cart>();
+            }
+
+            if (user != null) //如果有登入
+            {
+                if (InputBonusPoints > user.BonusPoints) //如果輸入的點數超過可用的點數
+                {
+                    ViewBag.InputBonusPointsError = "輸入的點數超過可用的點數";
+                    ViewBag.BonusPoints = user.BonusPoints;
+
+                    return View(objs);
+                }
+                else if(InputBonusPoints > objs.Sum(c => c.Price)) //如果輸入的點數超過總金額
+                {
+                    ViewBag.InputBonusPointsError = "輸入的點數超過總金額";
+                    ViewBag.BonusPoints = user.BonusPoints;
+
+                    return View(objs);
+                }
+                else
+                {
+                    HttpContext.Session.Set("InputBonusPoints", InputBonusPoints); //儲存輸入的點數
+                    //int IBPs = HttpContext.Session.Get<int>("InputBonusPoints");
+                    return RedirectToAction("Checkout", "Order");
+                }
+            } //如果沒登入
+            else
+            {
+                if (InputBonusPoints > 0) //如果輸入的點數超過可用的點數
+                {
+                    ViewBag.InputBonusPointsError = "輸入的點數超過可用的點數";
+                    ViewBag.BonusPoints = 0;
+
+                    return View(objs);
+                }
+                else
+                {
+                    HttpContext.Session.Set("InputBonusPoints", InputBonusPoints); //儲存輸入的點數
+                    //int IBPs = HttpContext.Session.Get<int>("InputBonusPoints");
+                    return RedirectToAction("Checkout", "Order");
+                }
+            }
         }
 
         [HttpPost]

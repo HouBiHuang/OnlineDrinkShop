@@ -19,17 +19,8 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Checkout()
+        public IActionResult Checkout()
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            if (user != null)
-            {
-                ViewBag.BonusPoints = user.BonusPoints;
-            }
-            else
-            {
-                ViewBag.BonusPoints = 0;
-            }
             return View();
         }
         [HttpPost]
@@ -37,6 +28,15 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         public async Task<IActionResult> Checkout(Order obj)
         {
             List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //取得購物車清單
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            if (user != null) //如果有登入
+            {
+                int InputBonusPoints = HttpContext.Session.Get<int>("InputBonusPoints");
+                user.BonusPoints = user.BonusPoints - InputBonusPoints; //使用者的紅利點數 - 輸入的紅利點數
+                user.BonusPoints = user.BonusPoints + (int)(obj.Total / 100); //使用者的紅利點數 + (總金額/100取整數)*滿100送1點
+                await _userManager.UpdateAsync(user); //儲存使用者資訊
+            }
 
             obj.OrderNo = GetOrderNo(); //取得訂單編號
 
@@ -58,7 +58,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
 
             _db.Orders.Add(obj); //新增訂單資訊
 
-            await _db.SaveChangesAsync(); //儲存
+            await _db.SaveChangesAsync(); //儲存訂單資訊
             HttpContext.Session.Set("cart", new List<Cart>()); //將購物車設為空
 
             return RedirectToAction(nameof(SubmitOrderSuccess));

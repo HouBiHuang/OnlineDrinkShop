@@ -6,18 +6,25 @@
     ViewData["Title"] = "確認訂單";
 }
 @{
-    List<Cart> objs = HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("cart");
-
+    List<Cart> objs = HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("cart"); //取得購物車項目
     if(objs == null)
     {
         objs = new List<Cart>();
     }
+
+    int InputBonusPoints = HttpContextAccessor.HttpContext.Session.Get<int>("InputBonusPoints"); //取得輸入點數
+    if(InputBonusPoints == null)
+    {
+        InputBonusPoints = 0;
+    }
+
+    int FinalTotal = objs.Sum(c => c.Price) - InputBonusPoints; //最終總金額
 }
 <h2 class="text-secondary">確認訂單</h2>
 <form asp-action="Checkout" enctype="multipart/form-data" method="post">
     <div class="p-4 rounded border border-dark row">
         <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
-        <input type="hidden" asp-for="Total" value="@objs.Sum(c => c.Price)" />
+        <input type="hidden" asp-for="Total" value="@FinalTotal" />
 
         <div class="col-12">
             <div class="form-group row">
@@ -77,10 +84,10 @@
         
         <div class="row">
             <div class="col-4">
-
+                <h3>使用點數:@InputBonusPoints</h3>
             </div>
             <div class="col-4 text-center">
-                <h3>總共:@objs.Sum(c => c.Price)元</h3>
+                <h3>總共: @FinalTotal 元</h3>
             </div>
             <div class="col-4 form-group text-end">
                 @if(objs.Count > 0)
