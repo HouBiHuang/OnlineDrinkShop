@@ -62,6 +62,22 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             return View(tea.ToPagedList(page ?? 1, 16)); //如果無指定Page，則從第1頁開始顯示，每頁16筆
         }
 
+        //果醋系列View
+        public IActionResult FruitVinegar(int? page)
+        {
+            var tea = (from t in _db.Products
+                       where t.Tag.Tag_Name == "果醋系列" && t.IsAvailable == true
+                       select t)
+                      .Include(a => a.Tag)
+                      .ToList();
+
+            return View(tea.ToPagedList(page ?? 1, 16)); //如果無指定Page，則從第1頁開始顯示，每頁16筆
+        }
+
+        public IActionResult ABC()
+        {
+            return View();
+        }
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -86,6 +102,9 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                     break;
                 case "季節鮮果系列":
                     ViewBag.Current = "SeasonalFreshFruit";
+                    break;
+                case "果醋系列":
+                    ViewBag.Current = "FruitVinegar";
                     break;
                 default:
                     break;

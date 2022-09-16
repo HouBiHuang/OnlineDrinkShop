@@ -77,6 +77,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link @Html.IsSelected(actions: "FruitVinegar", controllers: "Home")  @(ViewBag.Current == "FruitVinegar" ? "active" : "")" asp-area="Customer" asp-controller="Home" asp-action="FruitVinegar">
+                                果醋系列
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link @Html.IsSelected(actions: "CartPage,Checkout,SubmitOrderSuccess", controllers: "Home,Order")" asp-area="Customer" asp-controller="Home" asp-action="CartPage">
                                 <i class="bi bi-cart2"></i>
                                 (@count)
