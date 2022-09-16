@@ -40,7 +40,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             var isExist = await _roleManager.RoleExistsAsync(role.Name); //檢查新增Role名稱是否已存在
             if (isExist) //如果存在
             {
-                ViewBag.msg = "\"" + name + "\"" + " 已經存在!";
+                ViewBag.RoleError = "\"" + name + "\"" + " 已經存在!";
                 return View();
             }
 
@@ -148,7 +148,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 //取得User名稱(如果被鎖定就過濾掉)及Role名稱並轉換成SelectList
                 ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
                 ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
-                ViewBag.msg = "此使用者已被此Role指派過";
+                ViewBag.RoleError = "此使用者已被此Role指派過";
                 return View();
             }
 

@@ -49,20 +49,21 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 var searchProductName = _db.Products.FirstOrDefault(c => c.ProductName == obj.ProductName);
                 if (searchProductName != null)
                 {
-                    ViewBag.message = "此商品已經存在!";
+                    ViewBag.ProductError = "此商品已經存在!";
                     ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name");
                     return View(obj);
                 }
 
                 if (image != null)
                 {
+                    var SelectTag = _db.Tags.FirstOrDefault(c => c.Id == obj.TagId); //取得所選的TAG
                     //照片存取
-                    var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName)); //設定路徑
+                    var name = Path.Combine(_he.WebRootPath + "/Images/" + SelectTag.Tag_Name, Path.GetFileName(image.FileName)); //設定路徑
                     using (var stream = new FileStream(name, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
                     {
                         await image.CopyToAsync(stream);
                     }
-                    obj.Image = "Images/" + image.FileName;
+                    obj.Image = "Images/" + SelectTag.Tag_Name + "/" + image.FileName;
                 }
                 else
                 {
@@ -111,10 +112,11 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 }
                 else
                 {
-                    //照片儲存
-                    var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName)); //設定路徑
+                    var SelectTag = _db.Tags.FirstOrDefault(c => c.Id == obj.TagId); //取得所選的TAG
+                    //照片存取
+                    var name = Path.Combine(_he.WebRootPath + "/Images/" + SelectTag.Tag_Name, Path.GetFileName(image.FileName)); //設定路徑
                     await image.CopyToAsync(new FileStream(name, FileMode.Create, FileAccess.Write, FileShare.ReadWrite));
-                    obj.Image = "Images/" + image.FileName;
+                    obj.Image = "Images/" + SelectTag.Tag_Name + "/" + image.FileName;
                 }
 
                 _db.Products.Update(obj);

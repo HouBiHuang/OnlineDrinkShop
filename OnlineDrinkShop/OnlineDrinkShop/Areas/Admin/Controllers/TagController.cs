@@ -11,10 +11,11 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
     public class TagController : Controller
     {
         private ApplicationDbContext _db;
-
-        public TagController(ApplicationDbContext db)
+        private Microsoft.AspNetCore.Hosting.IWebHostEnvironment _he;
+        public TagController(ApplicationDbContext db, IWebHostEnvironment he)
         {
             _db = db;
+            _he = he;   
         }
 
         // GET: TagController
@@ -39,7 +40,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 var searchTagName = _db.Tags.FirstOrDefault(c => c.Tag_Name == obj.Tag_Name);
                 if (searchTagName != null)
                 {
-                    ViewBag.message = "此Tag已經存在!";
+                    ViewBag.TagError = "此Tag已經存在!";
                     return View(obj);
                 }
 
@@ -47,6 +48,11 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 _db.Tags.Add(obj);
                 await _db.SaveChangesAsync();
                 TempData["save"] = "Tag已被儲存!";
+
+                //新增檔案儲存路徑
+                string path = _he.WebRootPath + "/Images/" + obj.Tag_Name;
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                
                 return RedirectToAction(nameof(Index));
             }
 
