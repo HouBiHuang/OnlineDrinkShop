@@ -66,8 +66,31 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
 
         public string GetOrderNo()
         {
-            int rowCount = _db.Orders.ToList().Count() + 1;
-            return rowCount.ToString("000");
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[8];
+            var random = new Random();
+
+            //產生8碼亂數並存入stringChars
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+            
+            var returnOrderNo = new String(stringChars); //把stringChars轉成String，然後存進returnOrderNo
+
+            var searchOrderNo = _db.Orders.FirstOrDefault(c => c.OrderNo == returnOrderNo);//檢查是否重複的OrderNo
+            while (searchOrderNo != null) //重複的話，再重新產生
+            {
+                for (int i = 0; i < stringChars.Length; i++)
+                {
+                    stringChars[i] = chars[random.Next(chars.Length)];
+                }
+
+                returnOrderNo = new String(stringChars);
+                searchOrderNo = _db.Orders.FirstOrDefault(c => c.OrderNo == returnOrderNo);
+            }
+
+            return returnOrderNo;
         }
 
         public IActionResult SubmitOrderSuccess()

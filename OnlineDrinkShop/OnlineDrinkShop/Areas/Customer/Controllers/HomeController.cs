@@ -74,10 +74,6 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             return View(tea.ToPagedList(page ?? 1, 16)); //如果無指定Page，則從第1頁開始顯示，每頁16筆
         }
 
-        public IActionResult ABC()
-        {
-            return View();
-        }
         public IActionResult Details(int? id)
         {
             if (id == null)
