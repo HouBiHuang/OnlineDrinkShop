@@ -563,7 +563,6 @@ C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.As
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.Locator.dll
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -817,3 +816,6 @@ C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\refint\Onlin
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\OnlineDrinkShop.pdb
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\OnlineDrinkShop.genruntimeconfig.cache
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\ref\OnlineDrinkShop.dll
+C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.dll
+C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.Framework.dll
+C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.NET.StringTools.dll
