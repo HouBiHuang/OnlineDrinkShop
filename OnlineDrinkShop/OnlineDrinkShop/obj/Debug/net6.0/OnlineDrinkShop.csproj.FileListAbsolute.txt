@@ -302,7 +302,6 @@ C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\b
 C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.Locator.dll
 C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
 C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
 C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -819,3 +818,6 @@ C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\ref\OnlineDr
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.dll
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.Framework.dll
 C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.NET.StringTools.dll
+C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.dll
+C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.Framework.dll
+C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.NET.StringTools.dll

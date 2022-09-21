@@ -7,7 +7,7 @@ using OnlineDrinkShop.Models;
 namespace OnlineDrinkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class TagController : Controller
     {
         private ApplicationDbContext _db;

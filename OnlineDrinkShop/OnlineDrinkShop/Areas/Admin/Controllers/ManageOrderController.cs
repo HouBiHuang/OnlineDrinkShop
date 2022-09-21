@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineDrinkShop.Data;
 using OnlineDrinkShop.Models;
+using System.Data;
 
 namespace OnlineDrinkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ManageOrderController : Controller
     {
         private ApplicationDbContext _db;

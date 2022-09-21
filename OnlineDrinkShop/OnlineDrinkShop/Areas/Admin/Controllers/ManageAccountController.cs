@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineDrinkShop.Data;
 using OnlineDrinkShop.Models;
+using System.Data;
 
 namespace OnlineDrinkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ManageAccountController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
