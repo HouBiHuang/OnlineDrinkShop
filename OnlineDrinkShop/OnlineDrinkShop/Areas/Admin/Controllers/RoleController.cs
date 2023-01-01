@@ -30,7 +30,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -133,11 +133,11 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Assign()
+        public IActionResult Assign()
         {
             //取得User名稱(如果被鎖定就過濾掉)及Role名稱並轉換成SelectList
             ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
-            ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
+            ViewData["RoleName"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
 
             return View();
         }
@@ -145,21 +145,25 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
         public async Task<IActionResult> Assign(UserRoleVm userRole)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == userRole.UserId); //取得要被Assign的user
-            var isCheckRoleAssign = await _userManager.IsInRoleAsync(user, userRole.RoleId); //確認user是否已被Assign
-            if (isCheckRoleAssign) //如果已被Assign
-            {
-                //取得User名稱(如果被鎖定就過濾掉)及Role名稱並轉換成SelectList
-                ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
-                ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
-                ViewBag.RoleError = "此使用者已被此Role指派過";
-                return View();
-            }
 
-            var role = await _userManager.AddToRoleAsync(user, userRole.RoleId); //user RoleAssign
-            if (role.Succeeded) //成功指派
+            if(user != null)
             {
-                TempData["save"] = "使用者Role指派成功!";
-                return RedirectToAction(nameof(Index));
+                var isCheckRoleAssign = await _userManager.IsInRoleAsync(user, userRole.RoleName); //確認user是否已被Assign過相同的Role
+                if (isCheckRoleAssign) //如果已被Assign
+                {
+                    //取得User名稱(如果被鎖定就過濾掉)及Role名稱並轉換成SelectList
+                    ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
+                    ViewData["RoleName"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
+                    ViewBag.RoleError = "此使用者已被此Role指派過";
+                    return View();
+                }
+                
+                var role = await _userManager.AddToRoleAsync(user, userRole.RoleName); //user RoleAssign
+                if (role.Succeeded) //成功指派
+                {
+                    TempData["save"] = "使用者Role指派成功!";
+                    return RedirectToAction(nameof(Index));
+                }
             }
 
             return View();

@@ -8,6 +8,6 @@ namespace OnlineDrinkShop.Models
 
         [Required]
         [Display(Name = "Tag Name")]
-        public string Tag_Name { get; set; }
+        public string Tag_Name { get; set; } = string.Empty;
     }
 }

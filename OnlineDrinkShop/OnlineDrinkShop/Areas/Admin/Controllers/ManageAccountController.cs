@@ -24,7 +24,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(_db.ApplicationUsers.ToList()); //回傳使用者資料並轉成List
         }
 
-        public async Task<IActionResult> Edit(string id)
+        public IActionResult Edit(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id); //取得指定使用者
             if (user == null) //檢查指定使用者是否為空
@@ -45,7 +45,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
 
             userInfo.UserFullName = user.UserFullName; //更新UserFullName
             userInfo.PhoneNumber = user.PhoneNumber; //更新PhoneNumber
-
+            
             var result = await _userManager.UpdateAsync(userInfo); //送出更新
             if (result.Succeeded)
             {
@@ -56,7 +56,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Details(string id)
+        public IActionResult Details(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id); //取得指定使用者
             if (user == null) //檢查指定使用者是否為空
@@ -67,7 +67,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(user);
         }
 
-        public async Task<IActionResult> Lockout(string id)
+        public IActionResult Lockout(string id)
         {
             if (id == null)
             {
@@ -92,7 +92,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             }
 
             userInfo.LockoutEnd = DateTime.Now.AddYears(100); //封鎖時間+100年
-            int rowAffected = _db.SaveChanges(); //送出封鎖資訊，rowAffected:變動欄位有幾個
+            int rowAffected = await _db.SaveChangesAsync(); //送出封鎖資訊，rowAffected:變動欄位有幾個
             if (rowAffected > 0)
             {
                 TempData["lockout"] = "使用者已被封鎖!";
@@ -102,7 +102,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(userInfo);
         }
 
-        public async Task<IActionResult> Active(string id)
+        public IActionResult Active(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id); //取得指定使用者
             if (user == null) //檢查指定使用者是否為空
@@ -122,7 +122,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             }
 
             userInfo.LockoutEnd = DateTime.Now.AddDays(-1); //設定解鎖，當今時間-1天
-            int rowAffected = _db.SaveChanges(); //送出解鎖要求，rowAffected:變動欄位有幾個
+            int rowAffected = await _db.SaveChangesAsync(); //送出解鎖要求，rowAffected:變動欄位有幾個
             if (rowAffected > 0)
             {
                 TempData["active"] = "使用者已被解鎖!";
@@ -132,7 +132,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(userInfo);
         }
 
-        public async Task<IActionResult> Delete(string id)
+        public IActionResult Delete(string id)
         { 
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id); //取得指定使用者
             if (user == null) //檢查指定使用者是否為空
@@ -151,8 +151,8 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            _db.ApplicationUsers.Remove(userInfo); //移除使用者
-            int rowAffected = _db.SaveChanges(); //資料庫儲存
+             _db.ApplicationUsers.Remove(userInfo); //移除使用者
+            int rowAffected = await _db.SaveChangesAsync(); //資料庫儲存
             if (rowAffected > 0)
             {
                 TempData["remove"] = "使用者已被刪除!";

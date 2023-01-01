@@ -100,12 +100,6 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            
-            //var details = _db.OrderDetails.Where(c => c.OrderNo == obj.OrderNo);
-            //foreach (var data in details)
-            //{
-            //    _db.OrderDetails.Remove(data);
-            //}
 
             _db.Orders.Remove(obj); //刪除指定訂單
             await _db.SaveChangesAsync(); //儲存資料庫

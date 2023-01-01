@@ -8,7 +8,7 @@ namespace OnlineDrinkShop.Models
         public int Id { get; set; }
 
         [Required]
-        public string ProductName { get; set; }
+        public string ProductName { get; set; } = string.Empty;
 
         public string? Image { get; set; }
 

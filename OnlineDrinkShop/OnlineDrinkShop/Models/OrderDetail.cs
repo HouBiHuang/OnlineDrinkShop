@@ -10,11 +10,11 @@ namespace OnlineDrinkShop.Models
         [ForeignKey("OrderId")]
         public Order Order { get; set; }
 
-        public string OrderNo { get; set; }
-        public string ProductName { get; set; }
-        public string SugarLevel { get; set; }
-        public string IceLevel { get; set; }
-        public string Size { get; set; }
+        public string OrderNo { get; set; } = string.Empty;
+        public string ProductName { get; set; } = string.Empty;
+        public string SugarLevel { get; set; } = string.Empty;
+        public string IceLevel { get; set; } = string.Empty;
+        public string Size { get; set; } = string.Empty;
         public int Price { get; set; }
         public string? Remark { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;

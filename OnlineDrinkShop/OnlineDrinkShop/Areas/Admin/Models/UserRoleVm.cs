@@ -6,9 +6,9 @@ namespace OnlineDrinkShop.Areas.Admin.Models
     {
         [Required]
         [Display(Name = "User")]
-        public string UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
         [Required]
         [Display(Name = "Role")]
-        public string RoleId { get; set; }
+        public string RoleName { get; set; } = string.Empty;
     }
 }

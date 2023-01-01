@@ -31,7 +31,6 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Tag obj)
         {
             if (ModelState.IsValid)
@@ -74,7 +73,6 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Tag obj)
         {
             if (ModelState.IsValid)
@@ -118,7 +116,6 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int? id, Tag obj)
         {
             if (id == null || id != obj.Id)

@@ -821,3 +821,8 @@ C:\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.NE
 C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.dll
 C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.Build.Framework.dll
 C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\bin\Debug\net6.0\Microsoft.NET.StringTools.dll
+C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\staticwebassets\msbuild.OnlineDrinkShop.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\staticwebassets\msbuild.build.OnlineDrinkShop.props
+C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.OnlineDrinkShop.props
+C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.OnlineDrinkShop.props
+C:\Users\r6017\OneDrive\桌面\OnlineDrinkShop\OnlineDrinkShop\OnlineDrinkShop\obj\Debug\net6.0\staticwebassets.pack.json

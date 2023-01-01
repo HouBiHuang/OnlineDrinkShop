@@ -10,20 +10,20 @@ namespace OnlineDrinkShop.Models
         }
         public int Id { get; set; }
 
-        public string OrderNo { get; set; }
+        public string OrderNo { get; set; } = string.Empty;
 
         [Required]
-        public string UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
         [Required]
-        public string PhoneNo { get; set; }
+        public string PhoneNo { get; set; } = string.Empty;
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [Required]
-        public string Address { get; set; }
+        public string Address { get; set; } = string.Empty;
 
         public int Total { get; set; }
         public virtual List<OrderDetail> OrderDetail { get; set; }

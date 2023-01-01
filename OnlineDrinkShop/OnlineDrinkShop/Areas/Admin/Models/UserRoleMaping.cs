@@ -2,10 +2,10 @@
 {
     public class UserRoleMaping
     {
-        public string UserId { get; set; }
-        public string RoleId { get; set; }
-        public string UserName { get; set; }
-        public string RoleName { get; set; }
+        public string UserId { get; set; } = string.Empty;
+        public string RoleId { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
+        public string RoleName { get; set; } = string.Empty;
 
     }
 }
