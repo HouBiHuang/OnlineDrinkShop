@@ -8,7 +8,7 @@ namespace OnlineDrinkShop.Models
 
         public int OrderId { get; set; }
         [ForeignKey("OrderId")]
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
 
         public string OrderNo { get; set; } = string.Empty;
         public string ProductName { get; set; } = string.Empty;

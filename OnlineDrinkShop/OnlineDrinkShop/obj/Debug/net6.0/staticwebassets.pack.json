@@ -5,8 +5,12 @@
       "PackagePath": "staticwebassets\\OnlineDrinkShop.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\Images\\TESTTAG\\AD03.jpg",
-      "PackagePath": "staticwebassets\\Images\\TESTTAG\\AD03.jpg"
+      "Id": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\Images\\LOGO\\logo.png",
+      "PackagePath": "staticwebassets\\Images\\LOGO\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\Images\\奶茶系列\\AD02.jpg",
+      "PackagePath": "staticwebassets\\Images\\奶茶系列\\AD02.jpg"
     },
     {
       "Id": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\Images\\奶茶系列\\仙草凍奶茶.png",

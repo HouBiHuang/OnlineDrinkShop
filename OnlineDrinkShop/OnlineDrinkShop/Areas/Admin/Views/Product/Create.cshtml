@@ -54,7 +54,7 @@
                 <label asp-for="TagId">Tag:</label>
             </div>
             <div class="col-5">
-                <select asp-for="TagId" asp-items="(SelectList)@ViewData["tagId"]" class="form-select"></select>
+                <select asp-for="TagId" asp-items="(SelectList?)@ViewData["tagId"]" class="form-select"></select>
             </div>
             <span asp-validation-for="TagId" class="text-danger"></span>
         </div>

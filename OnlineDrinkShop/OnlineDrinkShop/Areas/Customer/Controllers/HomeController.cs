@@ -30,7 +30,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         public IActionResult Tea(int? page)
         {
             var tea = (from t in _db.Products
-                       where t.Tag.Tag_Name == "茗品系列" && t.IsAvailable == true
+                       where t.Tag!.Tag_Name == "茗品系列" && t.IsAvailable == true
                        select t)
                       .Include(a => a.Tag)
                       .ToList();
@@ -42,7 +42,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         public IActionResult MilkTea(int? page)
         {
             var tea = (from t in _db.Products
-                       where t.Tag.Tag_Name == "奶茶系列" && t.IsAvailable == true
+                       where t.Tag!.Tag_Name == "奶茶系列" && t.IsAvailable == true
                        select t)
                       .Include(a => a.Tag)
                       .ToList();
@@ -54,7 +54,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         public IActionResult SeasonalFreshFruit(int? page)
         {
             var tea = (from t in _db.Products
-                       where t.Tag.Tag_Name == "季節鮮果系列" && t.IsAvailable == true
+                       where t.Tag!.Tag_Name == "季節鮮果系列" && t.IsAvailable == true
                        select t)
                       .Include(a => a.Tag)
                       .ToList();
@@ -66,7 +66,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         public IActionResult FruitVinegar(int? page)
         {
             var tea = (from t in _db.Products
-                       where t.Tag.Tag_Name == "果醋系列" && t.IsAvailable == true
+                       where t.Tag!.Tag_Name == "果醋系列" && t.IsAvailable == true
                        select t)
                       .Include(a => a.Tag)
                       .ToList();
@@ -88,7 +88,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             }
 
             //設定當前頁面屬於哪個系列
-            switch (obj.Tag.Tag_Name) //選取當前飲料歸類
+            switch (obj.Tag?.Tag_Name) //選取當前飲料歸類
             {
                 case "茗品系列":
                     ViewBag.Current = "Tea";
@@ -121,22 +121,22 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                 ViewBag.BonusPoints = 0;
             }
 
-            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //購物車清單
-            if (objs == null)
-            {
-                objs = new List<Cart>();
-            }
+            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>(); //購物車清單
+            //if (objs == null)
+            //{
+            //    objs = new List<Cart>();
+            //}
             return View(objs);
         }
         [HttpPost]
         public async Task<IActionResult> CartPage(int InputBonusPoints)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //取得購物車清單
-            if (objs == null)
-            {
-                objs = new List<Cart>();
-            }
+            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>(); //取得購物車清單
+            //if (objs == null)
+            //{
+            //    objs = new List<Cart>();
+            //}
 
             if (user != null) //如果有登入
             {
@@ -157,7 +157,6 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                 else
                 {
                     HttpContext.Session.Set("InputBonusPoints", InputBonusPoints); //儲存輸入的點數
-                    //int IBPs = HttpContext.Session.Get<int>("InputBonusPoints");
                     return RedirectToAction("Checkout", "Order");
                 }
             } //如果沒登入
@@ -173,14 +172,13 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                 else
                 {
                     HttpContext.Session.Set("InputBonusPoints", InputBonusPoints); //儲存輸入的點數
-                    //int IBPs = HttpContext.Session.Get<int>("InputBonusPoints");
                     return RedirectToAction("Checkout", "Order");
                 }
             }
         }
 
         [HttpPost]
-        public ActionResult AddItemToCart(int? id, string select_size, string select_iceLevel,
+        public IActionResult AddItemToCart(int? id, string select_size, string select_iceLevel,
             string select_sugarLevel, int inputCount, string inputRemark)
         {
             //檢查id是否存在
@@ -198,11 +196,11 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
 
             List<Cart> objs = new List<Cart>(); //objs:Product type list
             Cart item = new Cart(); //item:購物車物件
-            objs = HttpContext.Session.Get<List<Cart>>("cart"); //購物車清單
-            if (objs == null)
-            {
-                objs = new List<Cart>();
-            }
+            objs = HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>(); //購物車清單
+            //if (objs == null)
+            //{
+            //    objs = new List<Cart>();
+            //}
 
             //將產品細項儲存至購物車
             item.Id = obj.Id;
@@ -224,8 +222,8 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             for (int i = 0; i < inputCount; i++)
             {
                 objs.Add(item);
-                HttpContext.Session.Set("cart", objs);
             }
+            HttpContext.Session.Set("cart", objs);
 
             return RedirectToAction("Details", new { id = id });
         }
@@ -233,8 +231,8 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         [ActionName("Remove")]
         public IActionResult RemoveToCart(int? id)
         {
-            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //購物車清單
-            if (objs != null)
+            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>(); //購物車清單
+            if (objs != new List<Cart>())
             {
                 var obj = objs.FirstOrDefault(c => c.Id == id);
                 if (obj != null)

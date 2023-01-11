@@ -18,7 +18,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         }
 
         //新增帳號
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -47,29 +47,9 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         }
 
         //新增帳號成功
-        public async Task<IActionResult> CreateSuccess()
+        public IActionResult CreateSuccess()
         {
             return View();
-        }
-        // GET: UserController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: UserController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
     }

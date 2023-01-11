@@ -23,7 +23,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(_db.Orders.ToList()); //回傳Products資料並轉成清單
         }
 
-        public ActionResult Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -52,7 +52,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
 
-        public ActionResult Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -71,7 +71,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
 
-        public ActionResult Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {

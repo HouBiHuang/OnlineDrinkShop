@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NfbaG8PXQ2XRzBXiVThfjZLTSQC9sGvfLeq6M6ULmJM=",
+  "Hash": "r3DHizlYttQ9J1iJimKWyEzGdMfG1WHvIAQpQTc8PaU=",
   "Source": "OnlineDrinkShop",
   "BasePath": "_content/OnlineDrinkShop",
   "Mode": "Default",
@@ -1105,12 +1105,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\Images\\TESTTAG\\AD03.jpg",
+      "Identity": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\Images\\LOGO\\logo.png",
       "SourceId": "OnlineDrinkShop",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\",
       "BasePath": "_content/OnlineDrinkShop",
-      "RelativePath": "Images/TESTTAG/AD03.jpg",
+      "RelativePath": "Images/LOGO/logo.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1119,7 +1119,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\TESTTAG\\AD03.jpg"
+      "OriginalItemSpec": "wwwroot\\Images\\LOGO\\logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\Images\\奶茶系列\\AD02.jpg",
+      "SourceId": "OnlineDrinkShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\",
+      "BasePath": "_content/OnlineDrinkShop",
+      "RelativePath": "Images/奶茶系列/AD02.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\奶茶系列\\AD02.jpg"
     },
     {
       "Identity": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\Images\\奶茶系列\\仙草凍奶茶.png",

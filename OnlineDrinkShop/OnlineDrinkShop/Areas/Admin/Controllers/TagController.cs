@@ -26,7 +26,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
         }
 
         // GET: TagController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -58,7 +58,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
 
-        public ActionResult Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
 
-        public ActionResult Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -101,7 +101,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
 
-        public ActionResult Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {

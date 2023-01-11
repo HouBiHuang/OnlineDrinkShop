@@ -6,17 +6,9 @@
     ViewData["Title"] = "確認訂單";
 }
 @{
-    List<Cart> objs = HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("cart"); //取得購物車項目
-    if(objs == null)
-    {
-        objs = new List<Cart>();
-    }
+    List<Cart> objs = HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>(); //取得購物車項目
 
     int InputBonusPoints = HttpContextAccessor.HttpContext.Session.Get<int>("InputBonusPoints"); //取得輸入點數
-    if(InputBonusPoints == null)
-    {
-        InputBonusPoints = 0;
-    }
 
     int FinalTotal = objs.Sum(c => c.Price) - InputBonusPoints; //最終總金額
 }

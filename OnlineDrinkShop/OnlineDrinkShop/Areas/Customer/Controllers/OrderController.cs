@@ -24,10 +24,9 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout(Order obj)
         {
-            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart"); //取得購物車清單
+            List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>(); //取得購物車清單
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
             if (user != null) //如果有登入
@@ -55,7 +54,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
                     obj.OrderDetail.Add(orderDetail);
                 }
             }
-
+            
             _db.Orders.Add(obj); //新增訂單資訊
 
             await _db.SaveChangesAsync(); //儲存訂單資訊

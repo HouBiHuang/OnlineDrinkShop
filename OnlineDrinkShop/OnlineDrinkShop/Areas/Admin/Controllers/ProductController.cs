@@ -21,7 +21,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             _he = he;
         }
         // GET: ProductController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View(_db.Products.Include(c => c.Tag).ToList()); //回傳Products資料並轉成清單
         }
@@ -38,7 +38,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
 
-        public ActionResult Create()
+        public IActionResult Create()
         {
             ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name"); //宣告Tag的SelectList
             return View();
@@ -60,13 +60,21 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 if (image != null)
                 {
                     var SelectTag = _db.Tags.FirstOrDefault(c => c.Id == obj.TagId); //取得所選的TAG
-                    //照片存取
-                    var name = Path.Combine(_he.WebRootPath + "/Images/" + SelectTag.Tag_Name, Path.GetFileName(image.FileName)); //設定路徑
-                    using (var stream = new FileStream(name, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+
+                    if (SelectTag != null) 
                     {
-                        await image.CopyToAsync(stream);
+                        //照片存取
+                        var name = Path.Combine(_he.WebRootPath + "/Images/" + SelectTag.Tag_Name, Path.GetFileName(image.FileName)); //設定路徑
+                        using (var stream = new FileStream(name, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+                        {
+                            await image.CopyToAsync(stream);
+                        }
+                        obj.Image = "Images/" + SelectTag.Tag_Name + "/" + image.FileName;
                     }
-                    obj.Image = "Images/" + SelectTag.Tag_Name + "/" + image.FileName;
+                    else
+                    {
+                        obj.Image = "Images/noimage.PNG";
+                    }
                 }
                 else
                 {
@@ -86,7 +94,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             ViewData["tagId"] = new SelectList(_db.Tags.ToList(), "Id", "Tag_Name"); //宣告Tag的SelectList
 
@@ -136,7 +144,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -152,7 +160,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
             return View(obj);
         }
 
-        public ActionResult Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
