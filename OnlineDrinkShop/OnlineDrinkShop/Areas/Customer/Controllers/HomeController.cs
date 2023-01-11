@@ -122,10 +122,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             }
 
             List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>(); //購物車清單
-            //if (objs == null)
-            //{
-            //    objs = new List<Cart>();
-            //}
+
             return View(objs);
         }
         [HttpPost]
@@ -133,10 +130,6 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             List<Cart> objs = HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>(); //取得購物車清單
-            //if (objs == null)
-            //{
-            //    objs = new List<Cart>();
-            //}
 
             if (user != null) //如果有登入
             {
@@ -197,10 +190,6 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             List<Cart> objs = new List<Cart>(); //objs:Product type list
             Cart item = new Cart(); //item:購物車物件
             objs = HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>(); //購物車清單
-            //if (objs == null)
-            //{
-            //    objs = new List<Cart>();
-            //}
 
             //將產品細項儲存至購物車
             item.Id = obj.Id;

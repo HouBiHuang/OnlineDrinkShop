@@ -66,8 +66,6 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            //obj.OrderDetail = _db.OrderDetails.Where(c => c.OrderId == obj.Id).ToList(); //利用OrderId找到訂單細節
-
             return View(obj);
         }
 
