@@ -10,6 +10,7 @@ namespace OnlineDrinkShop.Models
         }
         public int Id { get; set; }
 
+        public string UserId { get; set; } = string.Empty;
         public string OrderNo { get; set; } = string.Empty;
 
         [Required]

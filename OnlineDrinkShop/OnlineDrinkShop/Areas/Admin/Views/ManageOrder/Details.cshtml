@@ -21,6 +21,16 @@
 
             <div class="form-group row mt-2">
                 <div class="col-4">
+                    <label asp-for="UserId">訂購帳號ID:</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="UserId" class="form-control" readonly />
+                </div>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-4">
                     <label asp-for="UserName">訂購人:</label>
                 </div>
                 <div class="col-8">
