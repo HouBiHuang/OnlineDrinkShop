@@ -4,12 +4,9 @@
 
 @{
     var userRole = HttpContextAccessor.HttpContext.Session.GetString("roleName");
-    int count = 0;
-    List<Cart> objs = HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("cart");
-    if(objs == null)
-    {
-        objs = new List<Cart>();
-    }
+    int count = 0; //顯示購物車商品數量
+    List<Cart> objs = HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>();
+
     count = objs.Count();
 }
 <!DOCTYPE html>
