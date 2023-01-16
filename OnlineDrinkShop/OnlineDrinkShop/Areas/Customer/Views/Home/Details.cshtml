@@ -3,7 +3,7 @@
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "選購產品";
 }
 @{
     List<Cart> objs = HttpContextAccessor.HttpContext.Session.Get<List<Cart>>("cart") ?? new List<Cart>();
