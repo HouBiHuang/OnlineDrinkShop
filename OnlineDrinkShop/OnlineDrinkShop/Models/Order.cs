@@ -13,17 +13,17 @@ namespace OnlineDrinkShop.Models
         public string UserId { get; set; } = string.Empty;
         public string OrderNo { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "請輸入訂購人姓名")]
         public string UserName { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "請輸入電話號碼")]
         public string PhoneNo { get; set; } = string.Empty;
 
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "請輸入Email")]
+        [EmailAddress(ErrorMessage = "請輸入Email")]
         public string Email { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "請輸入地址")]
         public string Address { get; set; } = string.Empty;
 
         public int Total { get; set; }
