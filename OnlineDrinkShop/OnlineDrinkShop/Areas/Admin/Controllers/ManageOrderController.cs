@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineDrinkShop.Data;
@@ -11,10 +12,12 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class ManageOrderController : Controller
     {
+        private UserManager<ApplicationUser> _userManager;
         private ApplicationDbContext _db;
 
-        public ManageOrderController(ApplicationDbContext db)
+        public ManageOrderController(UserManager<ApplicationUser> userManager, ApplicationDbContext db)
         {
+            _userManager = userManager;
             _db = db;
         }
 
@@ -41,8 +44,21 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Order obj)
         {
+            if(obj.UserId == null) //因不允許UserId為null時存入Database，故設為string.Empty
+            {
+                obj.UserId = string.Empty;
+            }
+
+            ModelState.Remove("UserId");
             if (ModelState.IsValid)
             {
+                var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == obj.UserId);
+                if(user != null && obj.OrderIsComplete && obj.PointsHaveBeenGifted == false) //如果有user、訂單完成、點數未送出
+                {
+                    user.BonusPoints = user.BonusPoints + (int)(obj.Total / 100); //使用者的紅利點數 + (總金額/100取整數)*滿100送1點
+                    obj.PointsHaveBeenGifted = true; //點數已送出
+                }
+
                 _db.Orders.Update(obj); //更新
                 await _db.SaveChangesAsync(); //資料庫儲存
                 TempData["update"] = "訂單已被更新!";

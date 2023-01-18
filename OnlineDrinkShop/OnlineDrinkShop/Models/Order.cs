@@ -31,5 +31,6 @@ namespace OnlineDrinkShop.Models
 
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public bool OrderIsComplete { get; set; } = false;
+        public bool PointsHaveBeenGifted { get; set; } = false;
     }
 }

@@ -45,7 +45,8 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
 
             userInfo.UserFullName = user.UserFullName; //更新UserFullName
             userInfo.PhoneNumber = user.PhoneNumber; //更新PhoneNumber
-            
+            userInfo.BonusPoints = user.BonusPoints;//更新BonusPoints
+
             var result = await _userManager.UpdateAsync(userInfo); //送出更新
             if (result.Succeeded)
             {

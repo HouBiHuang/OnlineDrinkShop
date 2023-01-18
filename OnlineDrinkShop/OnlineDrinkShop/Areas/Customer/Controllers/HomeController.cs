@@ -197,7 +197,7 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             item.Size = select_size;
             item.IceLevel = select_iceLevel;
             item.SugarLevel = select_sugarLevel;
-            if(select_size == "Big")
+            if(select_size == "大")
             {
                 item.Price = obj.BigPrice;
             }

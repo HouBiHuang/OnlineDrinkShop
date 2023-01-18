@@ -33,7 +33,6 @@ namespace OnlineDrinkShop.Areas.Customer.Controllers
             {
                 int InputBonusPoints = HttpContext.Session.Get<int>("InputBonusPoints");
                 user.BonusPoints = user.BonusPoints - InputBonusPoints; //使用者的紅利點數 - 輸入的紅利點數
-                user.BonusPoints = user.BonusPoints + (int)(obj.Total / 100); //使用者的紅利點數 + (總金額/100取整數)*滿100送1點
                 await _userManager.UpdateAsync(user); //儲存使用者資訊
 
                 obj.UserId = user.Id;
