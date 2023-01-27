@@ -165,6 +165,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\deer.png",
+      "PackagePath": "staticwebassets\\deer.png"
+    },
+    {
       "Id": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
