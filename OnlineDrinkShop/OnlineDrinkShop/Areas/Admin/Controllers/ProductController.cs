@@ -29,7 +29,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
         public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
         {
             var obj = _db.Products.Include(c => c.Tag)
-                .Where(c => c.BigPrice >= lowAmount && c.BigPrice <= largeAmount).ToList(); //設定搜尋條件
+                .Where(c => c.SmallPrice >= lowAmount && c.BigPrice <= largeAmount).ToList(); //設定搜尋條件
 
             if (lowAmount == null || largeAmount == null) //如果都有填值的話，回傳指定搜尋條件內容
             {
