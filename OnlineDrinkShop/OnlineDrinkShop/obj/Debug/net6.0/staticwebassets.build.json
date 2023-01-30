@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "m84joUmNy3vSsnS0R//rfNI9QMGjPo+8Yi1nkLhHgZE=",
+  "Hash": "r3DHizlYttQ9J1iJimKWyEzGdMfG1WHvIAQpQTc8PaU=",
   "Source": "OnlineDrinkShop",
   "BasePath": "_content/OnlineDrinkShop",
   "Mode": "Default",
@@ -1086,23 +1086,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
-    },
-    {
-      "Identity": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\deer.png",
-      "SourceId": "OnlineDrinkShop",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\",
-      "BasePath": "_content/OnlineDrinkShop",
-      "RelativePath": "deer.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\deer.png"
     },
     {
       "Identity": "C:\\Users\\r6017\\OneDrive\\桌面\\OnlineDrinkShop\\OnlineDrinkShop\\OnlineDrinkShop\\wwwroot\\favicon.ico",

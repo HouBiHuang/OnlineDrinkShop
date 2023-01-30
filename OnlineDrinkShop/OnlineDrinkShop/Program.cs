@@ -13,7 +13,6 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //新增身份辨識
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
-    options.SignIn.RequireConfirmedAccount = true;
     options.Password.RequireNonAlphanumeric = false;
     })
     .AddRoles<IdentityRole>()
