@@ -57,14 +57,14 @@
 
 <form asp-action="" method="post">
     <div class="row">
-        <div class="col-4 text-start">
+        <div class="col-sm-12 col-lg-4 text-center text-lg-start">
             <label>使用點數:</label>
             <input type="number" min="0" value="0" name="InputBonusPoints"/>
         </div>
-        <div class="col-4 text-center">
+        <div class="col-sm-12 col-lg-4 text-center text-lg-center">
             <h3>總金額:@Model.Sum(c => c.Price)元</h3>
         </div>
-        <div class="col-4 text-end">
+        <div class="col-sm-12 col-lg-4 text-center text-lg-end">
             <input type="submit" asp-area="Customer" asp-controller="Home" asp-action="CartPage" class="btn btn-info" value="結帳去!"/>
         </div>
     </div>
