@@ -28,7 +28,7 @@ namespace OnlineDrinkShop.Areas.Admin.Controllers
 
         public IActionResult Edit(int? id)
         {
-            if (id == null)
+            if (id == null) //檢查有無該筆資料
             {
                 return NotFound();
             }
