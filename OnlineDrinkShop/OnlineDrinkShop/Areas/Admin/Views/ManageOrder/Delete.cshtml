@@ -1,0 +1,112 @@
+﻿@model OnlineDrinkShop.Models.Order
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2 class="text-secondary">刪除訂單</h2>
+<form asp-action="Delete" enctype="" method="post">
+    <div class="p-4 rounded border border-dark row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+
+        <div class="col-12 text-center">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="OrderNo">訂單編號:</label>
+                </div>
+                <div class="col-8">
+                    <input type="hidden" asp-for="Id"/>
+                    <input asp-for="OrderNo" class="form-control" readonly/>
+                </div>
+                <span asp-validation-for="OrderNo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-4">
+                    <label asp-for="UserName">訂購人:</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="UserName" class="form-control" readonly/>
+                </div>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-4">
+                    <label asp-for="PhoneNo">電話:</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="PhoneNo" class="form-control" readonly/>
+                </div>
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-4">
+                    <label asp-for="Email">信箱:</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Email" class="form-control" readonly/>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-4">
+                    <label asp-for="Address">地址:</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Address" class="form-control" readonly/>
+                </div>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-4">
+                    <label asp-for="Total">金額:</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Total" class="form-control" readonly/>
+                </div>
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-4">
+                    <label asp-for="OrderDate">訂購時間:</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="OrderDate" class="form-control" readonly/>
+                </div>
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-4">
+                    <label asp-for="OrderIsComplete">訂單是否已完成?</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="OrderIsComplete" class="" type="checkbox" disabled/>
+                </div>
+                <span asp-validation-for="OrderIsComplete" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" id="DeleteButton" value="刪除"/>
+                <a asp-controller="ManageOrder" asp-action="Index" class="btn btn-success">回到清單</a>
+            </div>
+        </div>
+        
+    </div>
+</form>
+
+@section Scripts{
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#DeleteButton").click(function(){
+            if (!confirm("確認要刪除嗎?")){
+                return false;
+            }
+        });
+    });
+</script>
+}

@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Delete";
+}
+   
+<br />
+
+<h2 class="text-secondary">刪除Role</h2>
+<form asp-action="Delete" method="post" id="role-form" enctype="multipart/form-data">
+    <div class="p-4 rounded border border-dark">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <h3 class="text-danger">確認要刪除嗎?</h3>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Role名稱</label>
+            </div>
+            <input type="hidden" value="@ViewBag.id" name="id"/>
+            <div class="col-5">
+                <input id="name" name="name" class="form-control" value="@ViewBag.name" readonly="readonly"/>
+            </div>
+        </div>
+     
+        <div class="form-group">
+            <input type="submit" class="btn btn-danger" id="DeleteButton" value="刪除"/>
+            <a asp-action="Index" class="btn btn-success">回到清單</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#DeleteButton").click(function(){
+            if (!confirm("確認要刪除嗎?")){
+                return false;
+            }
+        });
+    });
+</script>
+}

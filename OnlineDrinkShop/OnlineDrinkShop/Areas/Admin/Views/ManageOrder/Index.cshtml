@@ -1,0 +1,93 @@
+﻿@using OnlineDrinkShop.Models;
+@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-secondary">訂單總覽</h2>
+    </div>
+    <div class="col-6 text-end">
+        
+    </div>
+</div>    
+
+<br />
+<div>
+    <table class="table table-striped border" id="OrderTable">
+        <thead>
+            <tr class="table-info">
+                <th>
+                    訂單編號
+                </th>
+                <th>
+                    訂購人
+                </th>
+                <th>
+                    電話
+                </th>
+                <th>
+                    總金額
+                </th>
+                <th>
+                    訂購日期
+                </th>
+                <th>
+                    已完成?
+                </th>
+                <th>
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderNo</td>
+                    <td>@item.UserName</td>
+                    <td>@item.PhoneNo</td>
+                    <td>@item.Total</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.OrderIsComplete</td>
+                    <td>
+                        <partial name="_ButtonPartial" model="@item.Id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#OrderTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        } );
+
+        $(function(){
+            var save = '@TempData["save"]';
+            var update = '@TempData["update"]';
+            var remove = '@TempData["remove"]';
+
+            if (save != '') {
+                alertify.success(save);
+            } else if (update != '') {
+                alertify.success(update);
+            } else if (remove != '') {
+                alertify.error(remove);
+            }
+        });
+    </script>
+}

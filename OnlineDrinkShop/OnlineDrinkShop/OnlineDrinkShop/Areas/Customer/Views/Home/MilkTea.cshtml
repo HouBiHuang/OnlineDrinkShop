@@ -1,0 +1,58 @@
+﻿@using OnlineDrinkShop.Models;
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model X.PagedList.IPagedList<Product>
+
+@{
+    ViewData["Title"] = "奶茶系列";
+}
+
+<br />
+<br />
+
+<div class="row">
+    @foreach(var obj in Model)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <a asp-controller="Home" asp-action="Details" asp-route-productName="@obj.ProductName">
+                <div class="card mb-4 border-dark">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">
+                            <label style="font-size: 23px;color: black;">@obj.ProductName</label>
+                        </h4>
+                    </div>
+                    <div class="card-body" style="background-color:navajowhite">
+                        <img src="~/@obj.Image" alt="Card Image" class="card-img-top" style="height: 300px; object-fit: contain"/>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="float-start">
+                                <label style="font-size: 20px; color: black"><b>小:$@obj.SmallPrice &nbsp;</b></label>
+                            </div>
+                            <div class="float-end">
+                                <label style="font-size: 20px; color: black"><b>大:$@obj.BigPrice</b></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-5">
+
+    </div>
+    <div class="col-2">
+        @Html.PagedListPager(Model,
+            c => Href("~/Customer/Home/MilkTea?page=" + c),
+            new PagedListRenderOptions {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" }
+            })
+    </div>
+    <div class="col-5">
+
+    </div>
+</div>
